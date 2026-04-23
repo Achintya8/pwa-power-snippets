@@ -1,0 +1,34 @@
+{
+  "Link Manifest (Required for PWA)": {
+    "prefix": "pwa.link",
+    "description": "Link manifest and theme color in HTML head",
+    "body": [
+      "<link rel=\"manifest\" href=\"${1:/manifest.json}\">",
+      "<meta name=\"theme-color\" content=\"${2:#000000}\">"
+    ]
+  },
+
+  "Install Button UI (A2HS)": {
+    "prefix": "pwa.a2hs",
+    "description": "Add install button for Add to Home Screen",
+    "body": [
+      "<button id=\"installBtn\">Install App</button>",
+      "<script>",
+      "let deferredPrompt;",
+      "const btn = document.getElementById('installBtn');",
+      "",
+      "window.addEventListener('beforeinstallprompt', e => {",
+      "  e.preventDefault();",
+      "  deferredPrompt = e;",
+      "  btn.style.display = 'block';",
+      "});",
+      "",
+      "btn.addEventListener('click', async () => {",
+      "  deferredPrompt.prompt();",
+      "  await deferredPrompt.userChoice;",
+      "  deferredPrompt = null;",
+      "});",
+      "</script>"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "pwa-power-snippets",
+  "displayName": "PWA Power Snippets : Manifest & Service Worker Toolkit",
+  "description": "Production-ready PWA snippets: manifest, service worker, caching, offline, install prompts.",
+  "publisher": "Achintya K",
+  "version": "0.0.1",
+  "keywords": [
+    "pwa",
+    "progressive web app",
+    "service worker",
+    "manifest.json",
+    "offline",
+    "caching",
+    "javascript",
+    "snippets"
+  ],
+  "engines": {
+    "vscode": "^1.116.0"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "json",
+        "path": "./snippets/snippets.code-snippets"
+      },{ "language": "javascript", "path": "./snippets/javascript.json" },
+    { "language": "html", "path": "./snippets/html.json" }
+    ]
+  }
+}
