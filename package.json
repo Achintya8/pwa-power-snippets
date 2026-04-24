@@ -2,8 +2,9 @@
   "name": "pwa-power-snippets",
   "displayName": "PWA Power Snippets : Manifest & Service Worker Toolkit",
   "description": "Production-ready PWA snippets: manifest, service worker, caching, offline, install prompts.",
-  "publisher": "Achintya K",
+  "publisher": "AchintyaK",
   "version": "0.0.1",
+  "icon": "images/icon.png",
   "keywords": [
     "pwa",
     "progressive web app",
