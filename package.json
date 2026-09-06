@@ -3,7 +3,8 @@
   "displayName": "PWA Power Snippets : Manifest & Service Worker Toolkit",
   "description": "Production-ready PWA snippets: manifest, service worker, caching, offline, install prompts.",
   "publisher": "AchintyaK",
-  "version": "0.0.4",
+  "version": "0.0.5",
+  "license": "MIT",
   "icon": "images/icon.png",
   "keywords": [
     "pwa",
