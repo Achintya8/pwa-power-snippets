@@ -106,5 +106,103 @@
       "  );",
       "});"
     ]
+  },
+
+  "Stale While Revalidate Strategy": {
+    "prefix": "pwa.sw.stale",
+    "description": "Serve cached content instantly, update from network in background",
+    "body": [
+      "self.addEventListener('fetch', event => {",
+      "  event.respondWith(",
+      "    caches.open('${1:cache-v1}').then(cache => {",
+      "      return cache.match(event.request).then(cachedResponse => {",
+      "        const fetchPromise = fetch(event.request).then(networkResponse => {",
+      "          cache.put(event.request, networkResponse.clone());",
+      "          return networkResponse;",
+      "        });",
+      "        return cachedResponse || fetchPromise;",
+      "      });",
+      "    })",
+      "  );",
+      "});"
+    ]
+  },
+
+  "Cache Cleanup on Activate": {
+    "prefix": "pwa.sw.cleanup",
+    "description": "Delete outdated caches when new service worker activates",
+    "body": [
+      "const CACHE_NAME = '${1:cache-v2}';",
+      "",
+      "self.addEventListener('activate', event => {",
+      "  event.waitUntil(",
+      "    caches.keys().then(cacheNames => {",
+      "      return Promise.all(",
+      "        cacheNames.map(cache => {",
+      "          if (cache !== CACHE_NAME) {",
+      "            return caches.delete(cache);",
+      "          }",
+      "        })",
+      "      );",
+      "    })",
+      "  );",
+      "});"
+    ]
+  },
+
+  "Skip Waiting and Claim Clients": {
+    "prefix": "pwa.sw.update",
+    "description": "Activate new service worker immediately without waiting",
+    "body": [
+      "self.addEventListener('install', () => {",
+      "  self.skipWaiting();",
+      "});",
+      "",
+      "self.addEventListener('activate', event => {",
+      "  event.waitUntil(clients.claim());",
+      "});"
+    ]
+  },
+
+  "Background Sync Handler": {
+    "prefix": "pwa.sync",
+    "description": "Register and handle background sync for offline actions",
+    "body": [
+      "// Register background sync in main app thread",
+      "async function registerSync(tag = '${1:sync-data}') {",
+      "  const reg = await navigator.serviceWorker.ready;",
+      "  if ('sync' in reg) {",
+      "    await reg.sync.register(tag);",
+      "    console.log('Background sync registered:', tag);",
+      "  }",
+      "}",
+      "",
+      "// Handle background sync event in service worker",
+      "self.addEventListener('sync', event => {",
+      "  if (event.tag === '${1:sync-data}') {",
+      "    event.waitUntil(/* async sync function call */);",
+      "  }",
+      "});"
+    ]
+  },
+
+  "App Badge API": {
+    "prefix": "pwa.badge",
+    "description": "Set or clear unread badge count on PWA app icon",
+    "body": [
+      "async function updateBadge(count) {",
+      "  if ('setAppBadge' in navigator) {",
+      "    try {",
+      "      if (count > 0) {",
+      "        await navigator.setAppBadge(count);",
+      "      } else {",
+      "        await navigator.clearAppBadge();",
+      "      }",
+      "    } catch (err) {",
+      "      console.error('App badge error:', err);",
+      "    }",
+      "  }",
+      "}"
+    ]
   }
 }

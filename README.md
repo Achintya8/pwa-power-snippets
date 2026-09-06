@@ -20,11 +20,15 @@ A collection of high-quality, production-ready snippets for building Progressive
 | pwa.manifest     | Full manifest template               |
 | pwa.sw.network   | Network-first caching strategy       |
 | pwa.sw.cache     | Cache-first strategy                 |
+| pwa.sw.stale     | Stale-while-revalidate strategy      |
+| pwa.sw.cleanup   | Cache version cleanup on activate    |
+| pwa.sw.update    | Skip waiting & claim clients         |
 | pwa.register     | Register service worker              |
 | pwa.install      | Install prompt handler               |
 | pwa.offline      | Offline fallback                    |
 | pwa.push         | Push notifications                   |
 | pwa.sync         | Background sync                      |
+| pwa.badge        | App Badge API count setter           |
 | pwa.a2hs         | Add to Home Screen button            |
 | pwa.link         | Link manifest in HTML                |
 
